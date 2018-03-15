@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Panel = styled.div`
+const Wrapper = styled.div`
   background-color: ${props => props.bGColor};
   width: ${props => props.wdth};
   height: ${props => props.hght};
 `;
 
-const Panel = ({ bGColor, wdth, hght }) => {
+const Panel = (props) => {
   return (
-    <Panel bGColor={props.bGColor} wdth={props.wdth} hght={props.hght}>
+    <Wrapper bGColor={props.bGColor} wdth={props.wdth} hght={props.hght}>
       { props.children }
-    </Panel>
+    </Wrapper>
   );
 }
 
 Panel.defaultProps = {
   bGColor: '#fff',
-  wdth: '300px',
+  wdth: '400px',
   hght: '250px'
 };
 
