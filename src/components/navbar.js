@@ -34,12 +34,19 @@ const NavBar = (props) => {
     <NavWrapper>
       <NavFlexWrapper>
         <NavLeft>
-          <NavLink header={props.header} dollars={props.dollars}/>
-          <NavLink header={props.header} dollars={props.dollars}/>
+          <NavLink header="Bitcoin" dollars={props.rate}/>
         </NavLeft>
       </NavFlexWrapper>
     </NavWrapper>
   );
+}
+
+NavBar.propTypes = {
+  rate: PropTypes.string.isRequired
+}
+
+NavBar.defaultProps = {
+  rate: '0.00'
 }
 
 export default NavBar;

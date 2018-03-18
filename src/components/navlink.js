@@ -49,7 +49,7 @@ const NavLink = (props) => {
   return (
     <Nav>
       <NavFlexWrapper>
-        <NavText>{ props.header }</NavText> <Middot>{String.fromCharCode(183)}</Middot> <NavDollar>{ props.dollars }</NavDollar>
+        <NavText>{ props.header }</NavText> <Middot>{String.fromCharCode(183)}</Middot> <NavDollar>{'$' + props.dollars }</NavDollar>
       </NavFlexWrapper>
     </Nav>
   )

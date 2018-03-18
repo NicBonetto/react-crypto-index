@@ -28,28 +28,27 @@ class Panel extends Component {
     super(props)
 
     this.state = {
-      priceData: null
+      bitcoinRate: null
     };
   }
 
   async getData() {
     const data = await fetchData();
-
     return data;
   }
 
-  componentWillMount() {
-    const data = this.getData();
+  async componentWillMount() {
+    const data = await this.getData();
 
     this.setState(prevState => {
-      return Object.assign({}, prevState, {priceData: data});
+      return Object.assign({}, prevState, {bitcoinRate: data});
     });
   }
 
   render() {
     const { children } = this.props;
     const childrenWithProps = React.Children.map(children, child => 
-      React.cloneElement(child, { data: this.state.priceData })
+      React.cloneElement(child, { rate: this.state.bitcoinRate })
     );
 
     return (
