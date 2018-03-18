@@ -3,7 +3,7 @@ const fetchData = () => {
     .then(res => res.json())
     .then(data => {
       const rate = data.bpi.USD.rate;
-      return rate;
+      return rate.slice(0, -2);
     })
 }
 
