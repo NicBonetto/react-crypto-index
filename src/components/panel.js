@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import fetchData from '../utils/fetch-data';
+import fetchHistory from '../utils/fetch-history';
 
 const FlexOuterWrapper = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ class Panel extends Component {
     super(props)
 
     this.state = {
-      bitcoinRate: null
+      bitcoinRate: null,
+      bitcoinHistory: null
     };
   }
 
@@ -37,18 +39,24 @@ class Panel extends Component {
     return data;
   }
 
+  async getHistory() {
+    const data = await fetchHistory();
+    return data;
+  }
+
   async componentWillMount() {
     const data = await this.getData();
-
+    const history = await this.getHistory();
+    console.log(history)
     this.setState(prevState => {
-      return Object.assign({}, prevState, {bitcoinRate: data});
+      return Object.assign({}, prevState, {bitcoinRate: data}, {bitcoinHistory: history});
     });
   }
 
   render() {
     const { children } = this.props;
     const childrenWithProps = React.Children.map(children, child => 
-      React.cloneElement(child, { rate: this.state.bitcoinRate })
+      React.cloneElement(child, { rate: this.state.bitcoinRate, history: this.state.bitcoinHistory })
     );
 
     return (
